@@ -240,6 +240,11 @@ class UsersController < ApplicationController
                                                                    location_attributes: %i[country state city]
     )
     permitted_params[:is_Admin] = false if permitted_params[:is_Admin] == 'false'
+
+    if permitted_params[:Linkedin_Profile]&.start_with?('www.')
+      permitted_params[:Linkedin_Profile] = 'https://' + permitted_params[:Linkedin_Profile]
+    end
+    
     permitted_params
   end
 

@@ -254,6 +254,16 @@ RSpec.describe('Updating Users', type: :system) do
     expect(page).to(have_content('https://www.linkedin.com/in/john-doe2'))
   end
 
+  it '(Sunny Day) Update Linkedin Profile to www url with no leading https' do
+    visit edit_user_path(@user.id)
+
+    fill_in 'user_Linkedin_Profile', with: 'www.linkedin.com/in/john-doe2'
+
+    click_on 'Save'
+
+    expect(page).to(have_content('https://www.linkedin.com/in/john-doe2'))
+  end
+
   it '(Sunny Day) Update Linkedin Profile to blank' do
     visit edit_user_path(@user.id)
 
